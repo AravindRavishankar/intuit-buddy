@@ -26,19 +26,26 @@ def webhook():
 
     print("Request:")
     print(json.dumps(req, indent=4))
-
+    print("1")
     res = processRequest(req)
-
+    print(res)
+    print("2")
     res = json.dumps(res, indent=4)
+    print(res)
     # print(res)
     r = make_response(res)
+    print(r)
+    print("3")
     r.headers['Content-Type'] = 'application/json'
+    print("4")
     return r
 
 
 def processRequest(req):
     result = req.get("result")
+    print result
     parameters = result.get("parameters")
+    print parameters
     base_url = 'https://intuit.service-now.com/sp?id=search&t=&q='
     ln = len(parameters.values())
     ctr = 0
@@ -52,6 +59,7 @@ def processRequest(req):
     #result = urlopen(base_url).read()
     #data = json.loads(base_url)
     res = makeWebhookResult(base_url)
+    print res
     return res
 
 
