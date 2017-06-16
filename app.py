@@ -21,9 +21,7 @@ app = Flask(__name__)
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    print("Entered func")
     req = request.get_json(silent=True, force=True)
-
     print("Request:")
     print(json.dumps(req, indent=4))
 
@@ -38,6 +36,8 @@ def webhook():
 
 def processRequest(req):
     result = req.get("result")
+    print("Result:")
+    print(result)
     parameters = result.get("parameters")
     base_url = 'https://intuit.service-now.com/sp?id=search&t=&q='
     ln = len(parameters.values())
